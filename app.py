@@ -46,9 +46,9 @@ app = Flask(__name__,
 #             'guests': self.guests,
 #         }
 
-# @app.route('/')
-# def root():
-#     return app.send_static_file('index.html')
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 @app.route('/users/ping')
 def ping_pong():
