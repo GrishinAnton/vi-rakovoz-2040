@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
+    "& p": {
+      margin: 0,
+      fontWeight: "bold",
+    },
   },
   gridList: {
     width: 500,
@@ -39,10 +43,13 @@ export const NovemberBook = () => {
         </GridListTile>
         {person[0]["Рекомендации"].map((book, i) => (
           <GridListTile key={i}>
-            <img
+            {/* <img
               src={book.img}
               alt={`${book["Название"]} ${book["Жанр"]} ${book["Автор"]}`}
-            />
+            /> */}
+            <p>{`Название: ${book["Название"]}`}</p>
+            <p>{`Автор: ${book["Автор"]}`}</p>
+            <p>{`Жанр: ${book["Жанр"]}`}</p>
             <GridListTileBar
               title={book["Название"]}
               //   subtitle={<span>by: {tile.author}</span>}
