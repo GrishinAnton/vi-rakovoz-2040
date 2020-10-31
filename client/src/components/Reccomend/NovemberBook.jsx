@@ -123,6 +123,7 @@ export const NovemberBook = () => {
                 </div>
                 <div className={classes.buttons}>
                   <ButtonGroup size="small">
+                    <Button>Прочитано</Button>
                     <Button>Не интересно</Button>
                     <Button>В закладки</Button>
                   </ButtonGroup>
