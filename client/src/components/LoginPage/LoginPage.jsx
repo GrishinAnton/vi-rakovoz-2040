@@ -68,7 +68,9 @@ export const LoginPage = () => {
               user["Прочитано"].map((book, i) => (
                 <TableRow key={user["Имя"]}>
                   <TableCell key={i} component="th" scope="row">
-                    {`${book["Название"]} ${book["Автор"]} ${book["Жанр"]}`}
+                    <p>{`Название: ${book["Название"]}`}</p>
+                    <p>{`Автор: ${book["Автор"]}`}</p>
+                    <p>{`Жанр: ${book["Жанр"]}`}</p>
                   </TableCell>
                 </TableRow>
               ))
