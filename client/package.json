@@ -16,7 +16,12 @@
     "react-notifications": "^1.7.2",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.0"
+    "react-scripts": "4.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "prettier": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,10 +48,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "prettier": "^2.1.2"
+    
   }
 }
