@@ -4,18 +4,17 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-// import { StylesProvider } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core/styles";
 import { store } from "./features";
+import "react-notifications/lib/notifications.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <StylesProvider injectFirst> */}
+  <StylesProvider injectFirst>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-    {/* </StylesProvider> */},
-  </React.StrictMode>,
+  </StylesProvider>,
   document.getElementById("root")
 );

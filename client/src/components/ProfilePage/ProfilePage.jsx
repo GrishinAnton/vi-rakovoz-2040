@@ -4,6 +4,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {notification} from './../../utils'
 
 const books = [
     { id: 1, name: '1', author: 'a', rating: 5, actions: [] },
@@ -13,7 +14,12 @@ const books = [
     { id: 5, name: '5', author: 'e', rating: 1, actions: [] },
 ];
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
+
+    const handleClickButton = () => {
+        notification('bookFavorite')
+    }
+
     return (
         <div className='books'>
             {books.map(book => (
@@ -30,14 +36,12 @@ const ProfilePage = () => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Сейчас читаю</Button>
-                        <Button size="small">Хочу прочитать</Button>
-                        <Button size="small">Прочитана</Button>
+                        <Button size="small" onClick={handleClickButton}>Сейчас читаю</Button>
+                        <Button size="small" onClick={handleClickButton}>Хочу прочитать</Button>
+                        <Button size="small" onClick={handleClickButton}>Прочитана</Button>
                     </CardActions>
                 </Card>
             ))}
         </div>
     );
 };
-
-export default ProfilePage;
