@@ -28,7 +28,12 @@ export const getPersons = createAsyncThunk("user/persons", async () => {
       ],
       ["Рекомендации"]: [
         ...item["Рекомендации"].map((item) => {
-          return { ...item, selected: false, raiting: randomNumber(1, 5) };
+          return {
+            ...item,
+            selected: false,
+            raiting: randomNumber(1, 5),
+            img: "https://cdn1.ozone.ru/s3/multimedia-m/wc1200/6020094682.jpg",
+          };
         }),
       ],
     };
