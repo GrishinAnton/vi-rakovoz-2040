@@ -6,7 +6,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
-import { books } from "../../mocks";
+import { person } from "../../mocks";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,15 +37,18 @@ export const NovemberMr = () => {
             Подборка мероприятий
           </Typography>
         </GridListTile>
-        {books.map((book, i) => (
+        {person[0]["Мероприятия"].map((book, i) => (
           <GridListTile key={i}>
-            <img src={book.img} alt={book.title} />
+            <img
+              src={book.img}
+              alt={`${book["Название"]} ${book["Место проведения"]}`}
+            />
             <GridListTileBar
-              title={book.title}
+              title={book["Название"]}
               //   subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton
-                  aria-label={`info about ${book.title}`}
+                  aria-label={book["Название"]}
                   className={classes.icon}
                 >
                   <InfoIcon />

@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import React from "react";
+import { person } from "../../mocks";
 
 const users = [
   {
@@ -53,23 +54,25 @@ export const LoginPage = () => {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              {users.map((user, i) => (
+              {person.map((user, i) => (
                 <TableCell key={i}>
-                  <Link to={`/profile/${user.id}`}>{user.name}</Link>
+                  <Link
+                    to={`/profile/${user.id}`}
+                  >{`${user["Имя"]} ${user["Фамилия"]}`}</Link>
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
-              <TableRow key={user.name}>
-                {user.books.map((book, i) => (
+            {person.map((user) =>
+              user["Прочитано"].map((book, i) => (
+                <TableRow key={user["Имя"]}>
                   <TableCell key={i} component="th" scope="row">
-                    {book.name}
+                    {`${book["Название"]} ${book["Автор"]} ${book["Жанр"]}`}
                   </TableCell>
-                ))}
-              </TableRow>
-            ))}
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>
