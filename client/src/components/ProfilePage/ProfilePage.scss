@@ -1,0 +1,10 @@
+.books {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__book {
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+}
