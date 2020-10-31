@@ -10,6 +10,16 @@ const metricData = {
       metric: "Плюс к обучению",
     },
   },
+  settings: {
+    book: {
+      metric: "Плюс к научпоп",
+      title: "Изминение настроек рекомендаций",
+    },
+    disabledActivity: {
+      metric: "Не учитывать мероприятия",
+      title: "Изминение настроек рекомендаций",
+    },
+  },
 };
 
 export const notification = (messageType) => {
@@ -20,5 +30,20 @@ export const notification = (messageType) => {
         metricData.book.favorite.title,
         3000
       );
+      break;
+    case "settingsUp":
+      NotificationManager.warning(
+        metricData.settings.book.metric,
+        metricData.settings.book.title,
+        3000
+      );
+      break;
+    case "settingsActivity":
+      NotificationManager.warning(
+        metricData.settings.disabledActivity.metric,
+        metricData.settings.disabledActivity.title,
+        3000
+      );
+      break;
   }
 };

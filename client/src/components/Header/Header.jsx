@@ -1,19 +1,17 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import TuneIcon from "@material-ui/icons/Tune";
 import SearchIcon from "@material-ui/icons/Search";
-import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { notification } from "../../utils";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -49,10 +47,15 @@ export const Header = () => {
   });
   const handleChangeCheckbox = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    if (event.target.name === "checkedA") notification("settingsActivity");
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const handleChangeSliderUp = (event, newValue) => {
+    notification("settingsUp");
+  };
+
   const handleChange2 = (event, newValue) => {
     setValue2(newValue);
   };
@@ -117,7 +120,11 @@ export const Header = () => {
             <Typography className={classes.typography}>
               Больше научной литератры
             </Typography>
-            <Slider value={value} onChange={handleChange} />
+            <Slider
+              value={value}
+              onChange={handleChange}
+              onChangeCommitted={handleChangeSliderUp}
+            />
           </Grid>
 
           <Grid item className={classes.item}>
