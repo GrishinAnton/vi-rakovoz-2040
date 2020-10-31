@@ -46,9 +46,7 @@ app = Flask(__name__,
 #             'guests': self.guests,
 #         }
 
-@app.route('/')
-def root():
-    return app.send_static_file('index.html')
+
 
 @app.route('/users/ping')
 def ping_pong():
@@ -56,7 +54,10 @@ def ping_pong():
         'status': 'success',
         'message': 'pong!'
     })
-
+    
+@app.route('*')
+def root():
+    return app.send_static_file('index.html')
 # @app.route('/rsvp', methods=['POST'])
 # def rsvp():
 #     post_data = request.get_json()

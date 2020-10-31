@@ -12,7 +12,7 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route path="/" component={LoginPage} exact />
-          <Route path="/profile/:userId" component={Main} exact />
+          <Route path="/profile/:userId" component={Main} />
         </Switch>
       </Router>
       <NotificationContainer />
