@@ -32,7 +32,7 @@ export const BookRecomendation = () => {
         Книжные рекомендации
       </Typography>
       <div className="books">
-        {!!books.length &&
+        {!!books.length ? (
           books.map((book, i) => (
             <BookCard
               book={book}
@@ -40,7 +40,10 @@ export const BookRecomendation = () => {
               bookId={i}
               removeHandler={removeBookHandle}
             />
-          ))}
+          ))
+        ) : (
+          <span>Ушли собирать рекомендации... </span>
+        )}
       </div>
     </div>
   );
