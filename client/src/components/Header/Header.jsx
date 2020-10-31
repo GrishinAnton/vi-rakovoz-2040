@@ -49,8 +49,8 @@ export const Header = () => {
     checkedB: false,
   });
 
-  const handlerOnChangeSearch = () => {
-    notification("search");
+  const handlerOnChangeSearch = (e) => {
+    e.target.value.trim() && notification("search");
   };
 
   const handleChangeCheckbox = (event) => {
