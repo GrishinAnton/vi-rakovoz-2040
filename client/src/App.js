@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { Router, Route, Switch } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage/LoginPage";
 import { history } from "./utils";

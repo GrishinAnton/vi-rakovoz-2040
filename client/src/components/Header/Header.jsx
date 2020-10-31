@@ -84,7 +84,7 @@ export const Header = () => {
         }}
       >
         <Typography className={classes.typography}>
-          The content of the Popover.
+          Настройка рекомендательного сервиса
         </Typography>
       </Popover>
     </>
