@@ -1,9 +1,11 @@
 .books {
     padding: 20px;
     display: flex;
-    flex-wrap: wrap;
+    overflow-y: auto;
+    background-color: #ccc;
 
     &__book {
+        min-width: 400px;
         margin-right: 20px;
         margin-top: 20px;
     }
