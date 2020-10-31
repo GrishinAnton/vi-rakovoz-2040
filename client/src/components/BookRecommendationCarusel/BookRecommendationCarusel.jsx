@@ -32,11 +32,12 @@ const useStyles = makeStyles((theme) =>
 
 export const BookRecommendationCarusel = () => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
-        {books.map((book) => (
-          <GridListTile key={book.img}>
+        {books.map((book, i) => (
+          <GridListTile key={i}>
             <img src={book.img} alt={book.title} />
             <GridListTileBar
               title={book.title}

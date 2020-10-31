@@ -7,31 +7,86 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      padding: "10px",
+    },
+    input: {
+      width: "100%",
+    },
+    icon: {
+      display: "flex",
+      justifyContent: "center ",
+      cursor: "pointer",
+    },
+  })
+);
 
 export const Header = () => {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <div>Logo команды</div>
-      </Grid>
-      <Grid item xs={6}>
-        <FormControl>
+    <>
+      <Grid
+        container
+        className={classes.root}
+        spacing={1}
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item xs={2}>
+          <div>ВИ-РаКоВоз-2040</div>
+        </Grid>
+        <Grid item xs={8}>
           <OutlinedInput
-            id="standard-adornment-password"
+            className={classes.input}
             endAdornment={
               <InputAdornment position="end">
                 <SearchIcon />
               </InputAdornment>
             }
           />
-        </FormControl>
+        </Grid>
+        <Grid item xs={1} className={classes.icon}>
+          <TuneIcon fontSize="large" onClick={handleClick} />
+        </Grid>
+        <Grid item xs={1} className={classes.icon}>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </Grid>
       </Grid>
-      <Grid item xs={1}>
-        <TuneIcon fontSize="large" />
-      </Grid>
-      <Grid item xs={1}>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      </Grid>
-    </Grid>
+      <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <Typography className={classes.typography}>
+          The content of the Popover.
+        </Typography>
+      </Popover>
+    </>
   );
 };
