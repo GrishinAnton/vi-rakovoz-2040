@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage/LoginPage";
 import { history } from "./utils";
 import { NotificationContainer } from "react-notifications";
@@ -21,6 +21,7 @@ function App() {
         <Switch>
           <Route path="/" component={LoginPage} exact />
           <Route path="/profile/:userId" component={Main} />
+          <Route path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Router>
       <NotificationContainer />

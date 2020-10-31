@@ -13,22 +13,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     marginBottom: "15px",
   },
+  container: {
+    paddingBottom: "50px",
+  },
 }));
 
 export const Main = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" className={classes.container}>
       <Header />
       <Typography variant="h5" component="h5" className={classes.title}>
         Ваш персональный гид
       </Typography>
       <Reccomend />
       <BookRecomendation />
-      <BookRecommendationCarusel />
+      {/* <BookRecommendationCarusel />
       <div>Мероприятия</div>
-      <div>Кружки</div>
+      <div>Кружки</div> */}
     </Container>
   );
 };
