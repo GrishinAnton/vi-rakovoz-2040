@@ -9,6 +9,10 @@ const metricData = {
       title: "Книга добавлена в избранное",
       metric: "Плюс к обучению",
     },
+    reviewed: {
+      title: "Книга оценена",
+      metric: "Ваши рекомендации скорректированы",
+    },
   },
   settings: {
     book: {
@@ -42,6 +46,13 @@ export const notification = (messageType) => {
       NotificationManager.warning(
         metricData.settings.disabledActivity.metric,
         metricData.settings.disabledActivity.title,
+        3000
+      );
+      break;
+    case "bookReviewed":
+      NotificationManager.success(
+        metricData.book.reviewed.metric,
+        metricData.book.reviewed.title,
         3000
       );
       break;
