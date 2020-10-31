@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import { notification } from "../../utils";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const BookCard = ({ book, bookId, removeHandler }) => {
   const [showReactionButtons, setShowReactionButtons] = useState(false);
@@ -55,15 +56,17 @@ const BookCard = ({ book, bookId, removeHandler }) => {
         </CardActions>
       ) : (
         <CardActions>
-          <Button size="small" onClick={handleClickButton}>
-            Сейчас читаю
-          </Button>
-          <Button size="small" onClick={handleClickButton}>
-            Хочу прочитать
-          </Button>
-          <Button size="small" onClick={handleReadButtonClick}>
-            Прочитано
-          </Button>
+          <ButtonGroup size="small">
+            <Button size="small" onClick={handleReadButtonClick}>
+              Прочитано
+            </Button>
+            <Button size="small" onClick={handleClickButton}>
+              Не интересно
+            </Button>
+            <Button size="small" onClick={handleClickButton}>
+              В закладки
+            </Button>
+          </ButtonGroup>
         </CardActions>
       )}
     </Card>

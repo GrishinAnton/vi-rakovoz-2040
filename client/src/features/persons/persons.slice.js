@@ -23,6 +23,8 @@ export const getPersons = createAsyncThunk("user/persons", async () => {
             ...item,
             selected: false,
             raiting: randomNumber(1, 5),
+            img:
+              "https://cdn1.ozone.ru/s3/cms/80/t4d/wc500/banner_320x320_8.jpg",
           };
         }),
       ],

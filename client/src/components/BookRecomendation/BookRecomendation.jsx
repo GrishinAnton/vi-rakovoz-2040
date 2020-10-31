@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./BookRecomendation.scss";
 import BookCard from "../BookCard";
 import { useSelector } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  title: {
+    marginTop: "20px",
+    marginBottom: "15px",
+  },
+}));
 
 export const BookRecomendation = () => {
   const { persons } = useSelector((state) => state.persons);
   const [books, setBooks] = useState([]);
-
-  console.log(books);
-
+  const classes = useStyles();
   useEffect(() => {
     setBooks(persons.length ? persons[0]["Прочитано"] : []);
   }, [persons]);
@@ -22,7 +28,9 @@ export const BookRecomendation = () => {
 
   return (
     <div>
-      <h3>Рекомендации</h3>
+      <Typography variant="h5" component="h5" className={classes.title}>
+        Книжные рекомендации
+      </Typography>
       <div className="books">
         {!!books.length &&
           books.map((book, i) => (

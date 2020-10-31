@@ -76,7 +76,7 @@ export const NovemberMr = () => {
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
             <Typography variant="h6" component="h6" className={classes.title}>
-              Подборка книг для осенних вечеров
+              Подборка мероприятий
             </Typography>
           </GridListTile>
           {persons[0]["Мероприятия"].map((book, i) => (
