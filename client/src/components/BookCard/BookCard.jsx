@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import { notification } from "../../utils";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
 const BookCard = ({ book, bookId, removeHandler }) => {
   const [showReactionButtons, setShowReactionButtons] = useState(false);
@@ -44,15 +46,17 @@ const BookCard = ({ book, bookId, removeHandler }) => {
       </CardContent>
       {showReactionButtons ? (
         <CardActions>
-          <Button size="small" onClick={handleReactionButtonClick}>
-            Понравилось
-          </Button>
-          <Button size="small" onClick={handleReactionButtonClick}>
-            Не понравилось
-          </Button>
-          <Button size="small" onClick={handleReactionButtonClick}>
-            Двойственное впечатление
-          </Button>
+          <ButtonGroup size="small">
+            <Button size="small" onClick={handleReactionButtonClick}>
+              <ThumbUpAltIcon />
+            </Button>
+            <Button size="small" onClick={handleReactionButtonClick}>
+              <ThumbDownIcon />
+            </Button>
+            <Button size="small" onClick={handleReactionButtonClick}>
+              Двойственное впечатление
+            </Button>
+          </ButtonGroup>
         </CardActions>
       ) : (
         <CardActions>

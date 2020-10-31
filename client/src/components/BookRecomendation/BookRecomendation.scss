@@ -1,12 +1,17 @@
 .books {
-    padding: 20px;
-    display: flex;
-    overflow-y: auto;
-    background-color: #ccc;
+  padding: 30px;
+  display: flex;
+  overflow-y: auto;
+  background-color: #ccc;
 
-    &__book {
-        min-width: 500px;
-        margin-right: 20px;
-        margin-top: 20px;
-    }
+  &__book {
+    min-width: 500px;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+
+  .MuiPaper-root {
+    min-width: 360px;
+    margin-right: 20px;
+  }
 }
