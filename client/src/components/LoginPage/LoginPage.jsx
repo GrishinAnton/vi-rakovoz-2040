@@ -8,76 +8,61 @@ import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import React from "react";
-import { person } from "../../mocks";
+import { useSelector } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-const users = [
-  {
-    id: 1,
-    name: "Иванов И.И.",
-    books: [
-      { name: "Анна Каренина", author: "Лев Толстой" },
-      { name: "Автостопом по галактике", author: "Дуглас Адамс" },
-      { name: "Алиса в стране чудес", author: "Льюис Кэрролл" },
-      // { name: 'Алхимик', author: 'Пауло Коэльо' },
-      // { name: 'Американский Психопат', author: 'Брет Истон Эллис' },
-    ],
+const useStyles = makeStyles((theme) => ({
+  title: {
+    marginBottom: "10px",
+    marginTop: "15px",
   },
-  {
-    id: 2,
-    name: "Петров И.И.",
-    books: [
-      { name: "БДВ, или большой и добрый великан", author: "Роальд Даль" },
-      { name: "Белый пик", author: "Энтони Хоровитц" },
-      { name: "Библия ядовитого леса", author: "Барбара Кингсолвер" },
-      // { name: 'Благие знамения', author: 'Терри Пратчетт и Нил Гейман' },
-      // { name: 'Большие надежды', author: 'Чарльз Диккенс' },
-    ],
-  },
-  {
-    id: 3,
-    name: "Сидоров И.И.",
-    books: [
-      { name: "Гарри Поттер и кубок огня", author: "Джоан Роулинг" },
-      { name: "Гарри Поттер и философский камень", author: "Джоан Роулинг" },
-      { name: "Гарри Поттер и тайная комната", author: "Джоан Роулинг" },
-      // { name: 'Гарри Поттер и узник Азкабана', author: 'Джоан Роулинг' },
-      // { name: 'Гордость и предубеждение', author: 'Джейн Остен' },
-    ],
-  },
-];
+}));
 
 export const LoginPage = () => {
+  const classes = useStyles();
+
+  const { persons } = useSelector((state) => state.persons);
+
   return (
-    <Container maxWidth="lg">
-      <div>Заголовок рекомендательного сервиса</div>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {person.map((user, i) => (
-                <TableCell key={i}>
-                  <Link
-                    to={`/profile/${user.id}`}
-                  >{`${user["Имя"]} ${user["Фамилия"]}`}</Link>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {person.map((user) =>
-              user["Прочитано"].map((book, i) => (
-                <TableRow key={user["Имя"]}>
-                  <TableCell key={i} component="th" scope="row">
-                    <p>{`Название: ${book["Название"]}`}</p>
-                    <p>{`Автор: ${book["Автор"]}`}</p>
-                    <p>{`Жанр: ${book["Жанр"]}`}</p>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Container>
+    persons && (
+      <Container maxWidth="lg">
+        <Typography variant="h5" component="h5" className={classes.title}>
+          Авторизованные пользователи
+        </Typography>
+        <div></div>
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {persons &&
+                  persons.map((user, i) => (
+                    <TableCell key={i}>
+                      <Link
+                        to={`/profile/${user.id}`}
+                      >{`${user["Имя"]} ${user["Фамилия"]}`}</Link>
+                    </TableCell>
+                  ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {persons &&
+                persons.map((user) =>
+                  user["Прочитано"].map((book, i) => (
+                    <TableRow key={i}>
+                      <TableCell key={i} component="th" scope="row">
+                        <b>Прочитанные книги</b>
+                        <p>{`Название: ${book["Название"]}`}</p>
+                        <p>{`Автор: ${book["Автор"]}`}</p>
+                        <p>{`Жанр: ${book["Жанр"]}`}</p>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+    )
   );
 };

@@ -5,7 +5,7 @@ import { randomNumber } from "./../../utils";
 export const getPersons = createAsyncThunk("user/persons", async () => {
   const result = await apiGetPersons();
 
-  const data = result.map((item, i) => {
+  return result.map((item, i) => {
     return {
       ...item,
       ["Прочитано"]: [
@@ -33,7 +33,6 @@ export const getPersons = createAsyncThunk("user/persons", async () => {
       ],
     };
   });
-  return data;
 });
 
 const userSlice = createSlice({
@@ -44,7 +43,6 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getPersons.fulfilled.toString()]: (state, action) => {
-      console.log(action, "action");
       state.persons = action.payload;
     },
   },

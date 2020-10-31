@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { BookRecomendation } from "../BookRecomendation/BookRecomendation";
 import { BookRecommendationCarusel } from "../BookRecommendationCarusel/BookRecommendationCarusel";
@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import { Header } from "./../Header/Header";
 import { Reccomend } from "../Reccomend/Reccomend";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   title: {
