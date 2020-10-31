@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabPanel(props) {
+  // eslint-disable-next-line react/prop-types
   const { children, value, index, ...other } = props;
 
   return (
