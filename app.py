@@ -57,6 +57,9 @@ def ping_pong():
         'message': 'pong!'
     })
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return app.send_static_file('index.html')
 # @app.route('/rsvp', methods=['POST'])
 # def rsvp():
 #     post_data = request.get_json()
