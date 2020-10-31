@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import { NovemberBook } from "./NovemberBook";
 import { NovemberMr } from "./NovemberMr";
 import { NovemberKr } from "./NovemberKr";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     display: "flex",
     paddingTop: "10px",
+    justifyContent: "space-around",
 
     "& > div:not(:last-child)": {
       marginRight: "10px",
@@ -39,6 +41,8 @@ function TabPanel(props) {
 export const Reccomend = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const { isActivity } = useSelector((state) => state.settings);
+  console.log(isActivity, "isActivity");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -62,7 +66,7 @@ export const Reccomend = () => {
       </AppBar>
       <TabPanel value={value} index={0} className={classes.tab}>
         <NovemberBook />
-        <NovemberMr />
+        {isActivity ? <NovemberMr /> : null}
         <NovemberKr />
       </TabPanel>
       <TabPanel value={value} index={1}>

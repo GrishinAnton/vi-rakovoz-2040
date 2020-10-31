@@ -20,7 +20,11 @@ const metricData = {
       title: "Изминение настроек рекомендаций",
     },
     disabledActivity: {
-      metric: "Не учитывать мероприятия",
+      metric: "Изменение отображения мероприятий",
+      title: "Изминение настроек рекомендаций",
+    },
+    search: {
+      metric: "Метрика поиска по проекту",
       title: "Изминение настроек рекомендаций",
     },
   },
@@ -53,6 +57,13 @@ export const notification = (messageType) => {
       NotificationManager.success(
         metricData.book.reviewed.metric,
         metricData.book.reviewed.title,
+        3000
+      );
+      break;
+    case "search":
+      NotificationManager.success(
+        metricData.settings.search.metric,
+        metricData.settings.search.title,
         3000
       );
       break;

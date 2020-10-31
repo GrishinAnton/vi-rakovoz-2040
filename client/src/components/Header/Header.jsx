@@ -12,7 +12,8 @@ import Slider from "@material-ui/core/Slider";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { notification } from "../../utils";
-
+import { useDispatch } from "react-redux";
+import { disabledActivity } from "./../../features/settings/settings.slice";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -38,6 +39,8 @@ const useStyles = makeStyles((theme) =>
 
 export const Header = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [value, setValue] = React.useState(10);
   const [value2, setValue2] = React.useState(20);
@@ -45,9 +48,15 @@ export const Header = () => {
     checkedA: false,
     checkedB: false,
   });
+
+  const handlerOnChangeSearch = () => {
+    notification("search");
+  };
+
   const handleChangeCheckbox = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
     if (event.target.name === "checkedA") notification("settingsActivity");
+    if (event.target.name === "checkedA") dispatch(disabledActivity());
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,12 +69,8 @@ export const Header = () => {
     setValue2(newValue);
   };
 
-  const handleClick = (event) => {
+  const handleClickOpenSettings = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const open = Boolean(anchorEl);
@@ -80,10 +85,11 @@ export const Header = () => {
         alignItems="center"
       >
         <Grid item xs={2}>
-          <div>ВИ-РаКоВоз-2040</div>
+          <b>ВИ-РаКоВоз-2040</b>
         </Grid>
         <Grid item xs={8}>
           <OutlinedInput
+            onBlur={handlerOnChangeSearch}
             className={classes.input}
             endAdornment={
               <InputAdornment position="end">
@@ -93,7 +99,7 @@ export const Header = () => {
           />
         </Grid>
         <Grid item xs={1} className={classes.icon}>
-          <TuneIcon fontSize="large" onClick={handleClick} />
+          <TuneIcon fontSize="large" onClick={handleClickOpenSettings} />
         </Grid>
         <Grid item xs={1} className={classes.icon}>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -102,7 +108,7 @@ export const Header = () => {
       <Popover
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",
