@@ -1,5 +1,6 @@
 import React from "react";
 import { BookRecomendation } from "../BookRecomendation/BookRecomendation";
+import { BookRecommendationCarusel } from "../BookRecommendationCarusel/BookRecommendationCarusel";
 import Container from "@material-ui/core/Container";
 import { Header } from "./../Header/Header";
 
@@ -9,6 +10,7 @@ export const Main = () => {
       <Header />
       <div>SLIDER</div>
       <BookRecomendation />
+      <BookRecommendationCarusel />
       <div>Мероприятия</div>
       <div>Кружки</div>
     </Container>
