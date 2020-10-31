@@ -9,6 +9,8 @@ import InfoIcon from "@material-ui/icons/Info";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
 import Popover from "@material-ui/core/Popover";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "14px",
     },
   },
+  buttons: {
+    display: "flex",
+    justifyContent: "center",
+    padding: "5px",
+  },
 }));
 
 export const NovemberBook = () => {
@@ -75,12 +82,8 @@ export const NovemberBook = () => {
           {persons[0]["Рекомендации"].map((book, i) => (
             <GridListTile key={i}>
               <img src={book.img} alt={book.img} className={classes.img} />
-              <p>{`Название: ${book["Название"]}`}</p>
-              <p>{`Автор: ${book["Автор"]}`}</p>
-              <p>{`Жанр: ${book["Жанр"]}`}</p>
               <GridListTileBar
                 title={book["Название"]}
-                // subtitle={<span>by: sss</span>}
                 className={classes.subtitle}
                 actionIcon={
                   <IconButton
@@ -117,6 +120,12 @@ export const NovemberBook = () => {
                     <b>Жанр: </b>
                     {book["Жанр"]}
                   </p>
+                </div>
+                <div className={classes.buttons}>
+                  <ButtonGroup size="small">
+                    <Button>Не интересно</Button>
+                    <Button>В закладки</Button>
+                  </ButtonGroup>
                 </div>
               </Popover>
             </GridListTile>
