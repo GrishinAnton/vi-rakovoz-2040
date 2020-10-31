@@ -1,11 +1,15 @@
 import React from "react";
-import { ProfilePage } from "../ProfilePage/ProfilePage";
+import { BookRecomendation } from "../BookRecomendation/BookRecomendation";
 import Container from '@material-ui/core/Container';
 
 export const Main = () => {
   return (
     <Container maxWidth='lg'>
-      <ProfilePage />
+      <div>Header</div>
+      <div>SLIDER</div>
+      <BookRecomendation />
+      <div>Мероприятия</div>
+      <div>Кружки</div>
     </Container>
   )
 };

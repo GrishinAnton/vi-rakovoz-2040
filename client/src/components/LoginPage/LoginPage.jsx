@@ -6,6 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 
 const users = [
     {
@@ -15,8 +16,8 @@ const users = [
             { name: 'Анна Каренина', author: 'Лев Толстой' },
             { name: 'Автостопом по галактике', author: 'Дуглас Адамс' },
             { name: 'Алиса в стране чудес', author: 'Льюис Кэрролл' },
-            { name: 'Алхимик', author: 'Пауло Коэльо' },
-            { name: 'Американский Психопат', author: 'Брет Истон Эллис' },
+            // { name: 'Алхимик', author: 'Пауло Коэльо' },
+            // { name: 'Американский Психопат', author: 'Брет Истон Эллис' },
         ]
     },
     {
@@ -26,8 +27,8 @@ const users = [
             { name: 'БДВ, или большой и добрый великан', author: 'Роальд Даль' },
             { name: 'Белый пик', author: 'Энтони Хоровитц' },
             { name: 'Библия ядовитого леса', author: 'Барбара Кингсолвер' },
-            { name: 'Благие знамения', author: 'Терри Пратчетт и Нил Гейман' },
-            { name: 'Большие надежды', author: 'Чарльз Диккенс' },
+            // { name: 'Благие знамения', author: 'Терри Пратчетт и Нил Гейман' },
+            // { name: 'Большие надежды', author: 'Чарльз Диккенс' },
         ]
     },
     {
@@ -37,36 +38,39 @@ const users = [
             { name: 'Гарри Поттер и кубок огня', author: 'Джоан Роулинг' },
             { name: 'Гарри Поттер и философский камень', author: 'Джоан Роулинг' },
             { name: 'Гарри Поттер и тайная комната', author: 'Джоан Роулинг' },
-            { name: 'Гарри Поттер и узник Азкабана', author: 'Джоан Роулинг' },
-            { name: 'Гордость и предубеждение', author: 'Джейн Остен' },
+            // { name: 'Гарри Поттер и узник Азкабана', author: 'Джоан Роулинг' },
+            // { name: 'Гордость и предубеждение', author: 'Джейн Остен' },
         ]
     },
 ];
 
 const LoginPage = () => {
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        {users.map((user) => (
-                            <TableCell><Link to={`/profile/${user.id}`}>{user.name}</Link></TableCell>
-                        ))}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {users.map(user => (
-                        <TableRow key={user.name}>
-                            {user.books.map((book) => (
-                                <TableCell component="th" scope="row">
-                                    {book.name}
-                                </TableCell>
+        <Container maxWidth='lg'>
+            <div>Заголовок рекомендательного сервиса</div>
+            <TableContainer component={Paper}>
+                <Table aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            {users.map((user) => (
+                                <TableCell><Link to={`/profile/${user.id}`}>{user.name}</Link></TableCell>
                             ))}
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {users.map(user => (
+                            <TableRow key={user.name}>
+                                {user.books.map((book) => (
+                                    <TableCell component="th" scope="row">
+                                        {book.name}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Container>
     );
 }
 

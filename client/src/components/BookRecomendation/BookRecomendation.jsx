@@ -1,10 +1,10 @@
-import './ProfilePage.scss';
+import './BookRecomendation.scss';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {notification} from './../../utils'
+import {notification} from '../../utils'
 
 const books = [
     { id: 1, name: '1', author: 'a', rating: 5, actions: [] },
@@ -14,7 +14,7 @@ const books = [
     { id: 5, name: '5', author: 'e', rating: 1, actions: [] },
 ];
 
-export const ProfilePage = () => {
+export const BookRecomendation = () => {
 
     const handleClickButton = () => {
         notification('bookFavorite')
