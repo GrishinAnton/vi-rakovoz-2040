@@ -10,6 +10,10 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -24,12 +28,34 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "center ",
       cursor: "pointer",
     },
+    popover: {
+      padding: "15px",
+    },
+    item: {
+      paddingLeft: "10px",
+      paddingRight: "10px",
+    },
   })
 );
 
 export const Header = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [value, setValue] = React.useState(10);
+  const [value2, setValue2] = React.useState(20);
+  const [state, setState] = React.useState({
+    checkedA: false,
+    checkedB: false,
+  });
+  const handleChangeCheckbox = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const handleChange2 = (event, newValue) => {
+    setValue2(newValue);
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -83,9 +109,52 @@ export const Header = () => {
           horizontal: "center",
         }}
       >
-        <Typography className={classes.typography}>
-          Настройка рекомендательного сервиса
-        </Typography>
+        <div className={classes.popover}>
+          <Typography className={classes.typography}>
+            Настройка рекомендательного сервиса
+          </Typography>
+          <Grid item className={classes.item}>
+            <Typography className={classes.typography}>
+              Больше научной литератры
+            </Typography>
+            <Slider value={value} onChange={handleChange} />
+          </Grid>
+
+          <Grid item className={classes.item}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={state.checkedA}
+                  onChange={handleChangeCheckbox}
+                  name="checkedA"
+                  color="primary"
+                />
+              }
+              label="Не рекомендовать мероприятия"
+            />
+          </Grid>
+          {!state.checkedA && (
+            <Grid item className={classes.item}>
+              <Typography className={classes.typography}>
+                Больше мероприятий
+              </Typography>
+              <Slider value={value2} onChange={handleChange2} />
+            </Grid>
+          )}
+          <Grid item className={classes.item}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={state.checkedB}
+                  onChange={handleChangeCheckbox}
+                  name="checkedB"
+                  color="primary"
+                />
+              }
+              label="Не рекомендовать кружки"
+            />
+          </Grid>
+        </div>
       </Popover>
     </>
   );
