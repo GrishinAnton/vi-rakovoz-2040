@@ -18,7 +18,7 @@ export const Main = () => {
   return (
     <Container maxWidth="lg">
       <Header />
-      <Typography variant="h4" component="h4" className={classes.title}>
+      <Typography variant="h5" component="h5" className={classes.title}>
         Ваш персональный гид
       </Typography>
       <Reccomend />
