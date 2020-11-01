@@ -39,7 +39,7 @@ function TabPanel(props) {
 export const Reccomend = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const { isActivity } = useSelector((state) => state.settings);
+  const { isActivity, isKr } = useSelector((state) => state.settings);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -64,7 +64,7 @@ export const Reccomend = () => {
       <TabPanel value={value} index={0} className={classes.tab}>
         <NovemberBook />
         {isActivity && <NovemberMr />}
-        <NovemberKr />
+        {isKr && <NovemberKr />}
       </TabPanel>
       <TabPanel value={value} index={1}>
         Декабрь

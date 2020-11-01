@@ -13,7 +13,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { notification } from "../../utils";
 import { useDispatch } from "react-redux";
-import { disabledActivity } from "./../../features/settings/settings.slice";
+import {
+  disabledActivity,
+  disabledKr,
+} from "./../../features/settings/settings.slice";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -56,7 +59,9 @@ export const Header = () => {
   const handleChangeCheckbox = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
     if (event.target.name === "checkedA") notification("settingsActivity");
+    if (event.target.name === "checkedB") notification("settingsActivity");
     if (event.target.name === "checkedA") dispatch(disabledActivity());
+    if (event.target.name === "checkedB") dispatch(disabledKr());
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
