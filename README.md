@@ -1,3 +1,6 @@
+## Хакатон Лидеры Цифровой Трансформации 2020. 
+### Трек: Разработка рекомендательного сервиса по контенту и активностям учреждений культуры
+
 #### [Прототип](https://fathomless-beyond-94269.herokuapp.com/)
 
 #### [Презентация](https://docs.google.com/presentation/d/1f8LfKnV_-fuhsEwqa1rB6EaS9u80lS9uNYgknBAqSMQ/edit?usp=sharing)
