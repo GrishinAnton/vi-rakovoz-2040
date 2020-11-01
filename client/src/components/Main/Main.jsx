@@ -28,7 +28,7 @@ export const Main = () => {
         Ваш персональный гид
       </Typography>
       <Reccomend />
-      {/* <BookRecomendation /> */}
+      <BookRecomendation />
       {/* <BookRecommendationCarusel />
       <div>Мероприятия</div>
       <div>Кружки</div> */}

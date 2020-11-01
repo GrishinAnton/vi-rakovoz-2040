@@ -10,9 +10,18 @@ import { notification } from "../../utils";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    height: "62px",
+    overflow: "auto",
+  },
+}));
 
 const BookCard = ({ book, bookId, removeHandler }) => {
   const [showReactionButtons, setShowReactionButtons] = useState(false);
+  const classes = useStyles();
 
   const handleClickButton = () => {
     notification("bookFavorite");
@@ -31,18 +40,18 @@ const BookCard = ({ book, bookId, removeHandler }) => {
     <Card className="books_book" key={bookId}>
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
-          {book["Автор"]}
+          {book.author}
         </Typography>
         <Typography color="textSecondary" gutterBottom>
-          {book["Жанр"]}
+          {book.genre}
         </Typography>
-        <Typography variant="h5" component="h2">
-          {book["Название"]}
+        <Typography variant="h5" component="h2" className={classes.title}>
+          {book.name}
         </Typography>
-        <Typography color="textSecondary" className="book__rating">
+        {/* <Typography color="textSecondary" className="book__rating">
           Рейтинг:
           <Rating name="read-only" value={book.raiting} readOnly />
-        </Typography>
+        </Typography> */}
       </CardContent>
       {showReactionButtons ? (
         <CardActions>
