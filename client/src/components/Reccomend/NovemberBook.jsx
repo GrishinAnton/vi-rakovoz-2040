@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
@@ -80,12 +81,10 @@ export const NovemberBook = () => {
   return (
     currentData.length && (
       <div className={classes.root}>
+        <Typography variant="h6" component="h6" className={classes.title}>
+          Подборка книг для осенних вечеров
+        </Typography>
         <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-            <Typography variant="h6" component="h6" className={classes.title}>
-              Подборка книг для осенних вечеров
-            </Typography>
-          </GridListTile>
           {currentData.map((item, i) =>
             item.recommendations.best_compilation.list_of_recommendations.map(
               (book, i) => (
