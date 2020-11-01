@@ -14,6 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
+import { randomNumber } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
   book: {
@@ -124,6 +125,7 @@ export const BookRecomendationAuthor = () => {
                 key={i}
                 bookId={i}
                 removeHandler={removeBookHandle}
+                rating={randomNumber(0, 5)}
               />
             );
           })
