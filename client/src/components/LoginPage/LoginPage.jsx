@@ -26,7 +26,6 @@ export const LoginPage = () => {
   const classes = useStyles();
 
   const { persons } = useSelector((state) => state.persons);
-  console.log(persons);
   return (
     persons && (
       <Container maxWidth="lg">
@@ -41,7 +40,11 @@ export const LoginPage = () => {
                 {persons &&
                   persons.map((user, i) => (
                     <TableCell key={i}>
-                      <Link to={`/profile/${user.id}`}>{user.fio}</Link>
+                      <Link to={`/profile/${user.id}`}>
+                        {user.fio}
+                        {" id"}
+                        {user.id}
+                      </Link>
                     </TableCell>
                   ))}
               </TableRow>

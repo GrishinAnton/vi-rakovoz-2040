@@ -67,12 +67,7 @@ export const BookRecomendationAuthor = () => {
   const flatKey =
     allItem &&
     R.flatten(
-      R.keys(
-        R.map(
-          (item) => R.map((item) => R.map((item, i) => item, item), item),
-          allItem
-        )[0]
-      )
+      R.keys(R.map((item) => R.filter((item) => item.length, item), allItem)[0])
     );
 
   const handleChange = (event) => {
