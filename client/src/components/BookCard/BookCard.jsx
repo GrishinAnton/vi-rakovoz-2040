@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BookCard = ({ book, bookId, removeHandler }) => {
+const BookCard = ({ book, bookId, removeHandler, rating }) => {
   const [showReactionButtons, setShowReactionButtons] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const classes = useStyles();
@@ -61,7 +61,7 @@ const BookCard = ({ book, bookId, removeHandler }) => {
           </Typography>
           <Typography color="textSecondary" className="book__rating">
             Рейтинг:
-            <Rating name="read-only" value={randomNumber(0, 5)} readOnly />
+            <Rating name="read-only" value={rating} readOnly />
           </Typography>
         </CardContent>
         {showReactionButtons ? (
