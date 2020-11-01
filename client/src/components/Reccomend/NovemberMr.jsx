@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -12,6 +12,7 @@ import Popover from "@material-ui/core/Popover";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
+import { notification } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 export const NovemberMr = () => {
   const classes = useStyles();
   let { userId } = useParams();
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const { persons } = useSelector((state) => state.persons);
   const currentData = persons && persons.filter((item) => item.id == userId);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,6 +76,15 @@ export const NovemberMr = () => {
   const handleClickOpenSettings = (event, book) => {
     setAnchorEl(event.currentTarget);
     setPopoverData(book);
+  };
+
+  const handleClickBookmarkButton = () => {
+    if (isBookmarked) {
+      notification("bookmarkedDelete");
+    } else {
+      notification("bookmarked");
+    }
+    setIsBookmarked(!isBookmarked);
   };
 
   const open = Boolean(anchorEl);
@@ -138,9 +149,18 @@ export const NovemberMr = () => {
           </div>
           <div className={classes.buttons}>
             <ButtonGroup size="small">
-              <Button>Купить билет</Button>
+              <Button onClick={() => notification("boughtEvent")}>
+                Купить билет
+              </Button>
               <Button>Не интересно</Button>
-              <Button>В закладки</Button>
+              <Button
+                size="small"
+                onClick={handleClickBookmarkButton}
+                color={isBookmarked ? "primary" : "default"}
+                variant={isBookmarked ? "contained" : "outlined"}
+              >
+                В закладки
+              </Button>
             </ButtonGroup>
           </div>
         </Popover>
