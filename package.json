@@ -1,8 +1,5 @@
 {
     "scripts": {
         "heroku-postbuild": "cd client && npm i && npm run build"
-    },
-    "dependencies": {
-        "ramda": "^0.27.1"
     }
 }
