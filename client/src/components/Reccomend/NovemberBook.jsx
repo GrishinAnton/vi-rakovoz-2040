@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -9,6 +9,8 @@ import InfoIcon from "@material-ui/icons/Info";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
 import Popover from "@material-ui/core/Popover";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
@@ -71,6 +73,8 @@ const useStyles = makeStyles((theme) => ({
 export const NovemberBook = () => {
   const classes = useStyles();
   let { userId } = useParams();
+  const [showReactionButtons, setShowReactionButtons] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const { persons } = useSelector((state) => state.persons);
   const currentData = persons && persons.filter((item) => item.id == userId);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,6 +83,25 @@ export const NovemberBook = () => {
   const handleClickOpenSettings = (event, book) => {
     setAnchorEl(event.currentTarget);
     setPopoverData(book);
+  };
+
+  const handleReadButtonClick = () => {
+    setShowReactionButtons(true);
+    // notification("bookReviewed")
+  };
+
+  const handleClickBookmarkButton = () => {
+    if (isBookmarked) {
+      notification("bookmarkedDelete");
+    } else {
+      notification("bookmarked");
+    }
+    setIsBookmarked(!isBookmarked);
+  };
+
+  const handleReactionButtonClick = () => {
+    notification("bookReviewed");
+    setShowReactionButtons(false);
   };
 
   const open = Boolean(anchorEl);
@@ -142,19 +165,38 @@ export const NovemberBook = () => {
               {popoverData && popoverData.genre}
             </p>
           </div>
-          <div className={classes.buttons}>
-            <ButtonGroup size="small">
-              <Button onClick={() => notification("bookReviewed")}>
-                Прочитано
-              </Button>
-              <Button onClick={() => notification("bookReviewed")}>
-                Не интересно
-              </Button>
-              <Button onClick={() => notification("bookmarked")}>
-                В закладки
-              </Button>
-            </ButtonGroup>
-          </div>
+          {showReactionButtons ? (
+            <div className={classes.buttons}>
+              <ButtonGroup size="small">
+                <Button size="small" onClick={handleReactionButtonClick}>
+                  <ThumbUpAltIcon />
+                </Button>
+                <Button size="small" onClick={handleReactionButtonClick}>
+                  <ThumbDownIcon />
+                </Button>
+                <Button size="small" onClick={handleReactionButtonClick}>
+                  Двойственное впечатление
+                </Button>
+              </ButtonGroup>
+            </div>
+          ) : (
+            <div className={classes.buttons}>
+              <ButtonGroup size="small">
+                <Button onClick={handleReadButtonClick}>Прочитано</Button>
+                <Button onClick={() => notification("bookReviewed")}>
+                  Не интересно
+                </Button>
+                <Button
+                  size="small"
+                  onClick={handleClickBookmarkButton}
+                  color={isBookmarked ? "primary" : "default"}
+                  variant={isBookmarked ? "contained" : "outlined"}
+                >
+                  В закладки
+                </Button>
+              </ButtonGroup>
+            </div>
+          )}
         </Popover>
       </div>
     )

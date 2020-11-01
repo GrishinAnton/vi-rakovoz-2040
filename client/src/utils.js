@@ -36,6 +36,18 @@ const metricData = {
       title: "Изминение настроек рекомендаций",
     },
   },
+  sections: {
+    booked: {
+      metric: "Вы будете перенаправлены на страницу записи на секцию",
+      title: "Кружок выбран",
+    },
+  },
+  event: {
+    buyTicket: {
+      metric: "Вы будете перенаправлены на страницу покупки билета",
+      title: "Мероприятие выбрано",
+    },
+  },
 };
 
 export const notification = (messageType) => {
@@ -86,6 +98,20 @@ export const notification = (messageType) => {
       NotificationManager.success(
         metricData.settings.search.metric,
         metricData.settings.search.title,
+        3000
+      );
+      break;
+    case "bookedOnSection":
+      NotificationManager.success(
+        metricData.sections.booked.metric,
+        metricData.sections.booked.title,
+        3000
+      );
+      break;
+    case "boughtEvent":
+      NotificationManager.success(
+        metricData.event.buyTicket.metric,
+        metricData.event.buyTicket.title,
         3000
       );
       break;
