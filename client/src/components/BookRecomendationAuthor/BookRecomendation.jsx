@@ -83,7 +83,7 @@ export const BookRecomendationAuthor = () => {
     <div>
       <div className={classes.sss}>
         <Typography variant="h5" component="h5" className={classes.title}>
-          Книжные рекомендации по Жанру
+          Книжные рекомендации по Автору
         </Typography>
         <Select
           multiple
