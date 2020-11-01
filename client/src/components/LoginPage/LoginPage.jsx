@@ -26,7 +26,6 @@ export const LoginPage = () => {
   const classes = useStyles();
 
   const { persons } = useSelector((state) => state.persons);
-  console.log(persons);
   return (
     persons && (
       <Container maxWidth="lg">
