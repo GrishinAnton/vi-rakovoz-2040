@@ -48,7 +48,6 @@ export const person = [
         наименование: "Виолончель",
       },
     ],
-
     event_recommendations: [
       {
         event: "С чего начинается театр?",
@@ -1143,7 +1142,6 @@ export const person = [
   {
     id: 353401,
     fio: "Петров Петр",
-
     recommendations_event: [
       {
         организация: "Школа акварели Сергея Андрияки",
@@ -1171,7 +1169,6 @@ export const person = [
         наименование: "ГБУДО г.Москвы ДХШ 6",
       },
     ],
-
     event_recommendations: [
       {
         event: "Темные аллеи",
