@@ -21,10 +21,20 @@ const useStyles = makeStyles((theme) => ({
 
 const BookCard = ({ book, bookId, removeHandler }) => {
   const [showReactionButtons, setShowReactionButtons] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const classes = useStyles();
 
   const handleClickButton = () => {
     notification("bookFavorite");
+  };
+
+  const handleClickBookmarkButton = () => {
+    if (isBookmarked) {
+      notification("bookmarkedDelete");
+    } else {
+      notification("bookmarked");
+    }
+    setIsBookmarked(!isBookmarked);
   };
 
   const handleReadButtonClick = () => {
@@ -77,7 +87,12 @@ const BookCard = ({ book, bookId, removeHandler }) => {
               <Button size="small" onClick={handleClickButton}>
                 Не интересно
               </Button>
-              <Button size="small" onClick={handleClickButton}>
+              <Button
+                size="small"
+                onClick={handleClickBookmarkButton}
+                color={isBookmarked ? "primary" : "default"}
+                variant={isBookmarked ? "contained" : "outlined"}
+              >
                 В закладки
               </Button>
             </ButtonGroup>

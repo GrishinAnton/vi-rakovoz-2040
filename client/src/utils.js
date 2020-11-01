@@ -9,6 +9,14 @@ const metricData = {
       title: "Книга добавлена в избранное",
       metric: "Плюс к обучению",
     },
+    bookmarked: {
+      title: "Книга добавлена в закладки",
+      metric: "Ваши рекомендации скорректированы",
+    },
+    bookmarkedDelete: {
+      title: "Книга удалена из закладок",
+      metric: "Ваши рекомендации скорректированы",
+    },
     reviewed: {
       title: "Книга оценена",
       metric: "Ваши рекомендации скорректированы",
@@ -36,6 +44,20 @@ export const notification = (messageType) => {
       NotificationManager.warning(
         metricData.book.favorite.metric,
         metricData.book.favorite.title,
+        3000
+      );
+      break;
+    case "bookmarked":
+      NotificationManager.success(
+        metricData.book.bookmarked.metric,
+        metricData.book.bookmarked.title,
+        3000
+      );
+      break;
+    case "bookmarkedDelete":
+      NotificationManager.warning(
+        metricData.book.bookmarkedDelete.metric,
+        metricData.book.bookmarkedDelete.title,
         3000
       );
       break;
