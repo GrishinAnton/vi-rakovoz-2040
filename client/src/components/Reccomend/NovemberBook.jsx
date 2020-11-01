@@ -12,6 +12,7 @@ import Popover from "@material-ui/core/Popover";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
+import { notification } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -143,9 +144,15 @@ export const NovemberBook = () => {
           </div>
           <div className={classes.buttons}>
             <ButtonGroup size="small">
-              <Button>Прочитано</Button>
-              <Button>Не интересно</Button>
-              <Button>В закладки</Button>
+              <Button onClick={() => notification("bookReviewed")}>
+                Прочитано
+              </Button>
+              <Button onClick={() => notification("bookReviewed")}>
+                Не интересно
+              </Button>
+              <Button onClick={() => notification("bookmarked")}>
+                В закладки
+              </Button>
             </ButtonGroup>
           </div>
         </Popover>

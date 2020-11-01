@@ -38,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
     color: "rgba(255, 255, 255, 0.54)",
     padding: "5px",
   },
-  img: {
-    // transform: "translateY(-88px)",
-  },
   subtitle: {
     fontSize: "14px",
     lineHeight: "14px",
