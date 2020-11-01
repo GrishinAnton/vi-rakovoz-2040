@@ -27,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
   sss: {
     display: "flex",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export const BookRecomendationAuthor = () => {
@@ -84,25 +91,28 @@ export const BookRecomendationAuthor = () => {
         <Typography variant="h5" component="h5" className={classes.title}>
           Книжные рекомендации по Автору
         </Typography>
-        <Select
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<Input id="select-multiple-chip" />}
-          renderValue={(selected) => (
-            <div className={classes.chips}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} className={classes.chip} />
-              ))}
-            </div>
-          )}
-        >
-          {flatKey.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl className={classes.formControl} variant="outlined">
+          <InputLabel>Выберите автора</InputLabel>
+          <Select
+            multiple
+            value={personName}
+            onChange={handleChange}
+            input={<Input id="select-multiple-chip" />}
+            renderValue={(selected) => (
+              <div className={classes.chips}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} className={classes.chip} />
+                ))}
+              </div>
+            )}
+          >
+            {flatKey.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </div>
 
       <div className={`books ${classes.book}`}>
