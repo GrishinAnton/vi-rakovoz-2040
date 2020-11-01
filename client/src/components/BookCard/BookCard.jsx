@@ -37,52 +37,54 @@ const BookCard = ({ book, bookId, removeHandler }) => {
     removeHandler(book.name);
   };
   return (
-    <Card className="books_book" key={bookId}>
-      <CardContent>
-        <Typography color="textSecondary" gutterBottom>
-          {book.author}
-        </Typography>
-        <Typography color="textSecondary" gutterBottom>
-          {book.genre}
-        </Typography>
-        <Typography variant="h5" component="h2" className={classes.title}>
-          {book.name}
-        </Typography>
-        {/* <Typography color="textSecondary" className="book__rating">
+    book && (
+      <Card className="books_book" key={bookId}>
+        <CardContent>
+          <Typography color="textSecondary" gutterBottom>
+            {book.author}
+          </Typography>
+          <Typography color="textSecondary" gutterBottom>
+            {book.genre}
+          </Typography>
+          <Typography variant="h5" component="h2" className={classes.title}>
+            {book.name}
+          </Typography>
+          {/* <Typography color="textSecondary" className="book__rating">
           Рейтинг:
           <Rating name="read-only" value={book.raiting} readOnly />
         </Typography> */}
-      </CardContent>
-      {showReactionButtons ? (
-        <CardActions>
-          <ButtonGroup size="small">
-            <Button size="small" onClick={handleReactionButtonClick}>
-              <ThumbUpAltIcon />
-            </Button>
-            <Button size="small" onClick={handleReactionButtonClick}>
-              <ThumbDownIcon />
-            </Button>
-            <Button size="small" onClick={handleReactionButtonClick}>
-              Двойственное впечатление
-            </Button>
-          </ButtonGroup>
-        </CardActions>
-      ) : (
-        <CardActions>
-          <ButtonGroup size="small">
-            <Button size="small" onClick={handleReadButtonClick}>
-              Прочитано
-            </Button>
-            <Button size="small" onClick={handleClickButton}>
-              Не интересно
-            </Button>
-            <Button size="small" onClick={handleClickButton}>
-              В закладки
-            </Button>
-          </ButtonGroup>
-        </CardActions>
-      )}
-    </Card>
+        </CardContent>
+        {showReactionButtons ? (
+          <CardActions>
+            <ButtonGroup size="small">
+              <Button size="small" onClick={handleReactionButtonClick}>
+                <ThumbUpAltIcon />
+              </Button>
+              <Button size="small" onClick={handleReactionButtonClick}>
+                <ThumbDownIcon />
+              </Button>
+              <Button size="small" onClick={handleReactionButtonClick}>
+                Двойственное впечатление
+              </Button>
+            </ButtonGroup>
+          </CardActions>
+        ) : (
+          <CardActions>
+            <ButtonGroup size="small">
+              <Button size="small" onClick={handleReadButtonClick}>
+                Прочитано
+              </Button>
+              <Button size="small" onClick={handleClickButton}>
+                Не интересно
+              </Button>
+              <Button size="small" onClick={handleClickButton}>
+                В закладки
+              </Button>
+            </ButtonGroup>
+          </CardActions>
+        )}
+      </Card>
+    )
   );
 };
 
