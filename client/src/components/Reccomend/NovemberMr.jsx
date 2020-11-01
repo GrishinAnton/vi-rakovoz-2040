@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import Popover from "@material-ui/core/Popover";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +32,6 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
     padding: "5px",
-  },
-  img: {
-    transform: "translateY(-88px)",
   },
   subtitle: {
     fontSize: "14px",
@@ -63,15 +61,19 @@ const useStyles = makeStyles((theme) => ({
 
 export const NovemberMr = () => {
   const classes = useStyles();
+  let { userId } = useParams();
   const { persons } = useSelector((state) => state.persons);
+  const currentData = persons && persons.filter((item) => item.id == userId);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClickOpenSettings = (event) => {
+  const [popoverData, setPopoverData] = React.useState(null);
+  const handleClickOpenSettings = (event, book) => {
     setAnchorEl(event.currentTarget);
+    setPopoverData(book);
   };
 
   const open = Boolean(anchorEl);
   return (
-    persons.length && (
+    currentData.length && (
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
@@ -79,59 +81,66 @@ export const NovemberMr = () => {
               Подборка мероприятий
             </Typography>
           </GridListTile>
-          {persons[0]["Мероприятия"].map((book, i) => (
-            <GridListTile key={i}>
-              <img src={book.img} alt={book.img} className={classes.img} />
-              <GridListTileBar
-                title={book["Название"]}
-                className={classes.subtitle}
-                actionIcon={
-                  <IconButton
-                    className={classes.icon}
-                    onClick={handleClickOpenSettings}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-              <Popover
-                open={open}
-                anchorEl={anchorEl}
-                onClose={() => setAnchorEl(null)}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-              >
-                <div className={classes.popper}>
-                  <p>
-                    <b>Название: </b>
-                    {book["Название"]}
-                  </p>
-                  <p>
-                    <b>Место: </b>
-                    {book["Место проведения"]}
-                  </p>
-                  <p>
-                    <b>Когда: </b>
-                    {book["Дата начала"]} {book["Время начала"]}
-                  </p>
-                </div>
-                <div className={classes.buttons}>
-                  <ButtonGroup size="small">
-                    <Button>Купить билет</Button>
-                    <Button>Не интересно</Button>
-                    <Button>В закладки</Button>
-                  </ButtonGroup>
-                </div>
-              </Popover>
-            </GridListTile>
-          ))}
+          {currentData &&
+            currentData.map((item, i) =>
+              item.event_recommendations.map((book, i) => (
+                <GridListTile key={i}>
+                  <img
+                    src="https://thumbs.dreamstime.com/z/vector-illustration-background-flat-design-group-people-doing-different-activity-style-196255464.jpg"
+                    alt="1"
+                    className={classes.img}
+                  />
+                  <GridListTileBar
+                    title={book.event}
+                    className={classes.subtitle}
+                    actionIcon={
+                      <IconButton
+                        className={classes.icon}
+                        onClick={(e) => handleClickOpenSettings(e, book)}
+                      >
+                        <InfoIcon />
+                      </IconButton>
+                    }
+                  />
+                </GridListTile>
+              ))
+            )}
         </GridList>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+        >
+          <div className={classes.popper}>
+            <p>
+              <b>Название: </b>
+              {popoverData && popoverData.event}
+            </p>
+            <p>
+              <b>Место: </b>
+              {popoverData && popoverData.place}
+            </p>
+            <p>
+              <b>Когда: </b>
+              {popoverData && popoverData.date}
+            </p>
+          </div>
+          <div className={classes.buttons}>
+            <ButtonGroup size="small">
+              <Button>Купить билет</Button>
+              <Button>Не интересно</Button>
+              <Button>В закладки</Button>
+            </ButtonGroup>
+          </div>
+        </Popover>
       </div>
     )
   );

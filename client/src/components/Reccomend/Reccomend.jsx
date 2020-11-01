@@ -63,7 +63,7 @@ export const Reccomend = () => {
       </AppBar>
       <TabPanel value={value} index={0} className={classes.tab}>
         <NovemberBook />
-        {/* {isActivity && <NovemberMr />} */}
+        {isActivity && <NovemberMr />}
         {/* <NovemberKr /> */}
       </TabPanel>
       <TabPanel value={value} index={1}>

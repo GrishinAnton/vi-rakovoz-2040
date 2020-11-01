@@ -70,7 +70,6 @@ export const NovemberBook = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [popoverData, setPopoverData] = React.useState(null);
 
-  console.log(currentData);
   const handleClickOpenSettings = (event, book) => {
     setAnchorEl(event.currentTarget);
     setPopoverData(book);
