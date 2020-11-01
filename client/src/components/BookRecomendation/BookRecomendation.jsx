@@ -74,6 +74,16 @@ export const BookRecomendation = () => {
     setPersonName(event.target.value);
   };
 
+  let emptyBooksListString = "";
+
+  if (!flatData.length) {
+    emptyBooksListString = (
+      <div>
+        <p>На найдено книг в данной категории</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className={classes.sss}>
@@ -101,22 +111,26 @@ export const BookRecomendation = () => {
         </Select>
       </div>
 
-      <div className="books">
-        {flatData ? (
-          flatData.map((item, i) => {
-            return R.includes(item.name, remove) ? null : (
-              <BookCard
-                book={item}
-                key={i}
-                bookId={i}
-                removeHandler={removeBookHandle}
-              />
-            );
-          })
-        ) : (
-          <span>Ушли собирать рекомендации... </span>
-        )}
-      </div>
+      {flatData.length ? (
+        <div className="books">
+          {flatData ? (
+            flatData.map((item, i) => {
+              return R.includes(item.name, remove) ? null : (
+                <BookCard
+                  book={item}
+                  key={i}
+                  bookId={i}
+                  removeHandler={removeBookHandle}
+                />
+              );
+            })
+          ) : (
+            <span>Ушли собирать рекомендации... </span>
+          )}
+        </div>
+      ) : (
+        emptyBooksListString
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
-import { notification } from "../../utils";
+import { notification, randomNumber } from "../../utils";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
@@ -49,10 +49,10 @@ const BookCard = ({ book, bookId, removeHandler }) => {
           <Typography variant="h5" component="h2" className={classes.title}>
             {book.name}
           </Typography>
-          {/* <Typography color="textSecondary" className="book__rating">
-          Рейтинг:
-          <Rating name="read-only" value={book.raiting} readOnly />
-        </Typography> */}
+          <Typography color="textSecondary" className="book__rating">
+            Рейтинг:
+            <Rating name="read-only" value={randomNumber(0, 5)} readOnly />
+          </Typography>
         </CardContent>
         {showReactionButtons ? (
           <CardActions>
