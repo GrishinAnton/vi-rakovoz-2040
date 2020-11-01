@@ -17,13 +17,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
     marginTop: "15px",
   },
+  cell: {
+    verticalAlign: "top",
+  },
 }));
 
 export const LoginPage = () => {
   const classes = useStyles();
 
   const { persons } = useSelector((state) => state.persons);
-
+  console.log(persons);
   return (
     persons && (
       <Container maxWidth="lg">
@@ -38,27 +41,29 @@ export const LoginPage = () => {
                 {persons &&
                   persons.map((user, i) => (
                     <TableCell key={i}>
-                      <Link
-                        to={`/profile/${user.id}`}
-                      >{`${user["Имя"]} ${user["Фамилия"]}`}</Link>
+                      <Link to={`/profile/${user.id}`}>{user.fio}</Link>
                     </TableCell>
                   ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {persons &&
-                persons.map((user) =>
-                  user["Прочитано"].map((book, i) => (
-                    <TableRow key={i}>
-                      <TableCell key={i} component="th" scope="row">
-                        <b>Прочитанные книги</b>
-                        <p>{`Название: ${book["Название"]}`}</p>
-                        <p>{`Автор: ${book["Автор"]}`}</p>
-                        <p>{`Жанр: ${book["Жанр"]}`}</p>
-                      </TableCell>
-                    </TableRow>
-                  ))
-                )}
+              {persons && (
+                <TableRow>
+                  {persons.map((item, i) => (
+                    <TableCell key={i} className={classes.cell}>
+                      {item.user_history.map((book, i) => (
+                        <>
+                          <b>Прочитанные книги</b>
+                          <p>{`Название: ${book.name}`}</p>
+                          <p>{`Автор: ${book.author}`}</p>
+                          <p>{`Жанр: ${book.genre}`}</p>
+                          <hr />
+                        </>
+                      ))}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

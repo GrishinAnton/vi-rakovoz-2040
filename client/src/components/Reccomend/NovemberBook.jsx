@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import Popover from "@material-ui/core/Popover";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,15 +64,21 @@ const useStyles = makeStyles((theme) => ({
 
 export const NovemberBook = () => {
   const classes = useStyles();
+  let { userId } = useParams();
   const { persons } = useSelector((state) => state.persons);
+  const currentData = persons && persons.filter((item) => item.id == userId);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClickOpenSettings = (event) => {
+  const [popoverData, setPopoverData] = React.useState(null);
+
+  console.log(currentData);
+  const handleClickOpenSettings = (event, book) => {
     setAnchorEl(event.currentTarget);
+    setPopoverData(book);
   };
 
   const open = Boolean(anchorEl);
   return (
-    persons.length && (
+    currentData.length && (
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
@@ -79,59 +86,67 @@ export const NovemberBook = () => {
               Подборка книг для осенних вечеров
             </Typography>
           </GridListTile>
-          {persons[0]["Рекомендации"].map((book, i) => (
-            <GridListTile key={i}>
-              <img src={book.img} alt={book.img} className={classes.img} />
-              <GridListTileBar
-                title={book["Название"]}
-                className={classes.subtitle}
-                actionIcon={
-                  <IconButton
-                    className={classes.icon}
-                    onClick={handleClickOpenSettings}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-              <Popover
-                open={open}
-                anchorEl={anchorEl}
-                onClose={() => setAnchorEl(null)}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-              >
-                <div className={classes.popper}>
-                  <p>
-                    <b>Название: </b>
-                    {book["Название"]}
-                  </p>
-                  <p>
-                    <b>Автор: </b>
-                    {book["Автор"]}
-                  </p>
-                  <p>
-                    <b>Жанр: </b>
-                    {book["Жанр"]}
-                  </p>
-                </div>
-                <div className={classes.buttons}>
-                  <ButtonGroup size="small">
-                    <Button>Прочитано</Button>
-                    <Button>Не интересно</Button>
-                    <Button>В закладки</Button>
-                  </ButtonGroup>
-                </div>
-              </Popover>
-            </GridListTile>
-          ))}
+          {currentData.map((item, i) =>
+            item.recommendations.best_compilation.list_of_recommendations.map(
+              (book, i) => (
+                <GridListTile key={i}>
+                  <img
+                    src="https://cdn1.ozone.ru/s3/multimedia-m/wc1200/6020094682.jpg"
+                    alt="1"
+                    className={classes.img}
+                  />
+                  <GridListTileBar
+                    title={book.author}
+                    className={classes.subtitle}
+                    actionIcon={
+                      <IconButton
+                        className={classes.icon}
+                        onClick={(e) => handleClickOpenSettings(e, book)}
+                      >
+                        <InfoIcon />
+                      </IconButton>
+                    }
+                  />
+                </GridListTile>
+              )
+            )
+          )}
         </GridList>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+        >
+          <div className={classes.popper}>
+            <p>
+              <b>Название: </b>
+              {popoverData && popoverData.name}
+            </p>
+            <p>
+              <b>Автор: </b>
+              {popoverData && popoverData.author}
+            </p>
+            <p>
+              <b>Жанр: </b>
+              {popoverData && popoverData.genre}
+            </p>
+          </div>
+          <div className={classes.buttons}>
+            <ButtonGroup size="small">
+              <Button>Прочитано</Button>
+              <Button>Не интересно</Button>
+              <Button>В закладки</Button>
+            </ButtonGroup>
+          </div>
+        </Popover>
       </div>
     )
   );
