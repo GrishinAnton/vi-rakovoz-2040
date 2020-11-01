@@ -16,6 +16,10 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles((theme) => ({
+  book: {
+    background:
+      "linear-gradient(235.39deg, #8989BA 2.12%, rgba(255, 255, 255, 0) 100%), #A7A6CB",
+  },
   title: {
     marginTop: "20px",
     marginBottom: "15px",
@@ -101,7 +105,7 @@ export const BookRecomendationSerie = () => {
         </Select>
       </div>
 
-      <div className="books">
+      <div className={`books ${classes.book}`}>
         {flatData ? (
           flatData.map((item, i) => {
             return R.includes(item.name, remove) ? null : (

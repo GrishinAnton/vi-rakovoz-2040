@@ -17,6 +17,10 @@ import Chip from "@material-ui/core/Chip";
 import { randomNumber } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
+  book: {
+    background:
+      "linear-gradient(235.39deg, #E2D1C3 2.12%, rgba(255, 255, 255, 0) 100%), #FDFCFB",
+  },
   title: {
     marginTop: "20px",
     marginBottom: "15px",
@@ -113,7 +117,7 @@ export const BookRecomendation = () => {
       </div>
 
       {flatData.length ? (
-        <div className="books">
+        <div className={`books ${classes.book}`}>
           {flatData ? (
             flatData.map((item, i) => {
               return R.includes(item.name, remove) ? null : (
