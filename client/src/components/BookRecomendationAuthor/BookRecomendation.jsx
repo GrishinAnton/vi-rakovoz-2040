@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const BookRecomendation = () => {
+export const BookRecomendationAuthor = () => {
   let { userId } = useParams();
   const { persons } = useSelector((state) => state.persons);
   const currentData = persons && persons.filter((item) => item.id == userId);
@@ -35,7 +35,7 @@ export const BookRecomendation = () => {
       (item) =>
         R.map(
           (item) => R.map((item) => item, item.list_of_recommendations),
-          item.recommendations.by_genre
+          item.recommendations.by_author
         ),
       currentData
     );
